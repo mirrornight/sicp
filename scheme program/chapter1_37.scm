@@ -1,0 +1,15 @@
+;(define (cont-frac N D k)
+;	(define (cf i)
+;		(if (= k i)
+;			(/ (N k) (D k))
+;			(/ (N i)
+;				(+ (D i) (cf (+ i 1))))))
+;	(cf 1))
+
+(define (cont-frac N D k)
+	(define (cf i result)
+		(if (= i 0)
+			result
+			(cf (- i 1) (/ (N i)
+				           (+ (D i) result)))))
+	(cf (- k 1) (/ (N k) (D k))))

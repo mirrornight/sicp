@@ -1,0 +1,12 @@
+(define (make-monitored f)
+	(define times-called 0)
+	(define (dispatch mf)
+		(cond ((eq? mf 'how-many-calls?)
+				times-called)
+		      ((eq? mf 'reset-count)
+		      	(set! times-called 0)
+		      	times-called)
+		      (else 
+		      	    (set! times-called (+ times-called 1))
+		      	    (f mf))))
+	dispatch)
